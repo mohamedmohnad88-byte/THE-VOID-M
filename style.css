@@ -122,3 +122,4 @@ body.calm #view.tremor{animation:none}
 .cipher{font-family:'Cinzel',monospace;letter-spacing:.3em;font-size:1.6rem;color:var(--gold);direction:ltr;text-align:center}
 .sq{display:grid;grid-template-columns:repeat(3,64px);gap:6px;direction:ltr;justify-content:center}
 .sq input{width:64px;text-align:center;font-size:1.3rem;padding:.4em}
+.ic{vertical-align:-.12em}.glyph .ic{width:1em;height:1em}
