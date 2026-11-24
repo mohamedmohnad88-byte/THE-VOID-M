@@ -210,7 +210,7 @@ function buildNav(){
  s+='<div class="sec">'+esc(t('sections'))+'</div>';
  D.sections.forEach(function(x){s+=a('/section/'+x.id,'✦',L()==='ar'?x.ar:x.en)});
  s+=a('/archive','☿',t('archive'))+a('/symbols','♄',t('symbols'));
- s+=a('/forbidden','⛧',t('forbidden'),lv<3)+a('/vault','⚿',t('vault'),lv<4);
+ s+=a('/forbidden','✠',t('forbidden'),lv<3)+a('/vault','❖',t('vault'),lv<4);
  s+='<div class="sec">'+esc(t('tools'))+'</div>';
  s+=a('/mirror','◯',t('mirror'))+a('/lab','⚗',t('lab'))+a('/daily','☼',t('daily'))+a('/prophecy','☽',t('prophecy'))+a('/sealed','⌘',t('sealed'))+a('/unknown','?',t('unknown'));
  s+='<div class="sec">·</div>'+a('/bookmarks','★',t('bookmarks'))+a('/settings','⚙',t('settings'))+a('/help','♡',t('help'))+a('/about','i',t('about'))+a('/contact','✉',t('contact'))+a('/admin','▣',t('admin'));
@@ -239,8 +239,8 @@ V.home=function(){
  '<p style="text-align:center;margin:.2em">'+esc(t('current'))+': '+esc(lvlName(lv))+(nx?' · '+esc(t('next'))+': '+esc(lvlName(lv+1)):'')+'<br>'+c+' '+esc(t('of'))+' '+tot+' '+esc(t('lessonsDone'))+'</p></div>'+
  (next?'<a class="btn gold" href="#/lesson/'+next.id+'" style="display:inline-block">'+esc(c?t('resume'):t('start'))+'</a>':'')+'</div></section>'+
  '<h2>'+esc(t('sections'))+'</h2><div class="cards">'+D.sections.map(function(s){var n=D.lessons.filter(function(l){return l.sec===s.id}).length;return '<a class="card" href="#/section/'+s.id+'"><h3>'+esc(L()==='ar'?s.ar:s.en)+'</h3><p>'+esc(pick(s,'d'))+'</p><span class="meta">'+n+' '+esc(t('lessonsTitle'))+'</span></a>'}).join('')+
- '<a class="card '+(lv<3?'locked':'')+'" href="#/forbidden"><h3>⛧ '+esc(t('forbidden'))+'</h3><p>'+esc(lv<3?t('lockedF'):t('warnF').slice(0,90)+'…')+'</p></a>'+
- '<a class="card '+(lv<4?'locked':'')+'" href="#/vault"><h3>⚿ '+esc(t('vault'))+'</h3><p>'+esc(lv<4?t('lockedV'):t('warnV').slice(0,90)+'…')+'</p></a></div>'+
+ '<a class="card '+(lv<3?'locked':'')+'" href="#/forbidden"><h3>✠ '+esc(t('forbidden'))+'</h3><p>'+esc(lv<3?t('lockedF'):t('warnF').slice(0,90)+'…')+'</p></a>'+
+ '<a class="card '+(lv<4?'locked':'')+'" href="#/vault"><h3>❖ '+esc(t('vault'))+'</h3><p>'+esc(lv<4?t('lockedV'):t('warnV').slice(0,90)+'…')+'</p></a></div>'+
  '<p class="meta">'+esc(t('progressNote'))+'</p>'};
 
 V.section=function(id){
@@ -282,10 +282,10 @@ function gate(kind){
  var lv=levelNow(),need=kind==='forbidden'?3:4;
  if(lv<need)return '<div class="panel" style="text-align:center"><div class="glyph">⛓</div><h1>'+esc(t(kind))+'</h1><p>'+esc(kind==='forbidden'?t('lockedF'):t('lockedV'))+'</p><a class="btn" href="#/ascension">'+esc(t('ascension'))+'</a></div>';
  if(kind==='forbidden'?unlockedF:unlockedV)return null;
- return '<div class="panel" style="text-align:center"><div class="glyph" id="sealg" style="font-size:5rem">⛧</div><h1>'+esc(t('warnTitle'))+'</h1><p>'+esc(kind==='forbidden'?t('warnF'):t('warnV'))+'</p><button class="btn gold" id="breakBtn" data-k="'+kind+'">'+esc(t('breakSeal'))+'</button> <a class="btn ghost" href="#/">'+esc(t('back'))+'</a></div>'}
+ return '<div class="panel" style="text-align:center"><div class="glyph" id="sealg" style="font-size:5rem">✠</div><h1>'+esc(t('warnTitle'))+'</h1><p>'+esc(kind==='forbidden'?t('warnF'):t('warnV'))+'</p><button class="btn gold" id="breakBtn" data-k="'+kind+'">'+esc(t('breakSeal'))+'</button> <a class="btn ghost" href="#/">'+esc(t('back'))+'</a></div>'}
 V.forbidden=function(){
  var g=gate('forbidden');if(g)return g;
- return '<h1>⛧ '+esc(t('forbidden'))+'</h1><p>'+esc(t('disclaimer'))+'</p><div class="cards">'+D.forbidden.map(function(f){return '<a class="card" href="#/f/'+f.id+'"><span class="meta">'+esc(t('grade'))+' '+esc(f.grade)+'</span><h3>'+esc(pick(f,'t'))+'</h3>'+meter(f.danger)+status(f)+'</a>'}).join('')+'</div>'};
+ return '<h1>✠ '+esc(t('forbidden'))+'</h1><p>'+esc(t('disclaimer'))+'</p><div class="cards">'+D.forbidden.map(function(f){return '<a class="card" href="#/f/'+f.id+'"><span class="meta">'+esc(t('grade'))+' '+esc(f.grade)+'</span><h3>'+esc(pick(f,'t'))+'</h3>'+meter(f.danger)+status(f)+'</a>'}).join('')+'</div>'};
 V.f=function(id){
  var g=gate('forbidden');if(g)return g;
  var f=D.forbidden.filter(function(x){return x.id===id})[0];if(!f)return V.nf();
@@ -297,7 +297,7 @@ V.f=function(id){
  '<h3>'+esc(t('refs'))+'</h3>'+linkList(f.links)+'<p class="meta">'+esc(t('grade'))+': '+esc(f.grade)+'</p>'};
 V.vault=function(){
  var g=gate('vault');if(g)return g;
- return '<h1>⚿ '+esc(t('vault'))+'</h1><p>'+esc(t('warnV'))+'</p><div class="cards">'+D.vault.map(function(v,i){return '<a class="card" href="#/v/'+i+'"><h3>'+esc(L()==='ar'?v[0]:v[1])+'</h3>'+status({id:'v'+i})+'</a>'}).join('')+'</div>'};
+ return '<h1>❖ '+esc(t('vault'))+'</h1><p>'+esc(t('warnV'))+'</p><div class="cards">'+D.vault.map(function(v,i){return '<a class="card" href="#/v/'+i+'"><h3>'+esc(L()==='ar'?v[0]:v[1])+'</h3>'+status({id:'v'+i})+'</a>'}).join('')+'</div>'};
 V.v=function(i){
  var g=gate('vault');if(g)return g;var v=D.vault[+i];if(!v)return V.nf();
  var ar=L()==='ar';
