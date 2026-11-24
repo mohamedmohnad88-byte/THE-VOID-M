@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE VOID — أرشيف العقل البشري</title>
+<meta name="description" content="THE VOID: أرشيف العقل البشري. تاريخ المخطوطات وعلم النفس والفلسفة بمصادر موثقة.">
+<meta name="theme-color" content="#020204">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div id="fog" aria-hidden="true"></div>
+
+<div id="intro" role="dialog" aria-modal="true" aria-label="intro">
+  <canvas id="introSky" aria-hidden="true"></canvas>
+  <div class="intro-inner">
+    <svg id="seal" viewBox="0 0 200 200" aria-hidden="true"></svg>
+    <p id="introQuote" class="quote"></p>
+    <h1 id="introTitle" class="title">THE VOID</h1>
+    <p id="introSub" class="sub"></p>
+    <div class="intro-actions">
+      <button id="enterBtn" class="btn gold" type="button"></button>
+      <button id="skipBtn" class="btn ghost" type="button"></button>
+    </div>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <header id="top">
+    <button id="menuBtn" class="icon" type="button" aria-label="menu">☰</button>
+    <a href="#/" class="brand">THE VOID</a>
+    <div class="tools">
+      <input id="searchBox" type="search" autocomplete="off">
+      <button id="calmBtn" class="icon" type="button">☾</button>
+      <button id="soundBtn" class="icon" type="button">♪</button>
+      <button id="langBtn" class="btn small" type="button">EN</button>
+    </div>
+  </header>
+  <nav id="side" aria-label="main"></nav>
+  <main id="view" tabindex="-1"></main>
+  <div id="warden" class="warden" hidden></div>
+  <footer id="foot"></footer>
+</div>
+<div id="modal" hidden></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
